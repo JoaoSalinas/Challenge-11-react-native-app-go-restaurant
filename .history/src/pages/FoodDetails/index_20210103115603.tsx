@@ -92,35 +92,19 @@ const FoodDetails: React.FC = () => {
   }, [routeParams]);
 
   function handleIncrementExtra(id: number): void {
-    setExtras(
-      extras.map(extra =>
-        extra.id === id ? { ...extra, quantity: extra.quantity + 1 } : extra,
-      ),
-    );
+    // Increment extra quantity
   }
 
   function handleDecrementExtra(id: number): void {
-    const findExtra = extras.find(extra => extra.id === id);
-
-    if (!findExtra) return;
-
-    if (findExtra.quantity === 0) return;
-
-    setExtras(
-      extras.map(extra =>
-        extra.id === id ? { ...extra, quantity: extra.quantity - 1 } : extra,
-      ),
-    );
+    // Decrement extra quantity
   }
 
   function handleIncrementFood(): void {
-    setFoodQuantity(foodQuantity + 1);
+    // Increment food quantity
   }
 
   function handleDecrementFood(): void {
-    if (foodQuantity === 1) return;
-
-    setFoodQuantity(foodQuantity - 1);
+    // Decrement food quantity
   }
 
   const toggleFavorite = useCallback(() => {
@@ -139,7 +123,7 @@ const FoodDetails: React.FC = () => {
     }, 0);
 
     const foodTotal = food.price;
-    return formatValue((extraTotal + foodTotal) * foodQuantity);
+    return formatValue(extraTotal + foodTotal);
   }, [extras, food, foodQuantity]);
 
   async function handleFinishOrder(): Promise<void> {

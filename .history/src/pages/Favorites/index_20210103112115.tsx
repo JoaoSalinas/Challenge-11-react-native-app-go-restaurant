@@ -23,40 +23,33 @@ interface Food {
   name: string;
   description: string;
   price: number;
-  formattedPrice: string;
   thumbnail_url: string;
+  formattedPrice: string;
 }
 
-const Orders: React.FC = () => {
-  const [orders, setOrders] = useState<Food[]>([]);
+const Favorites: React.FC = () => {
+  const [favorites, setFavorites] = useState<Food[]>([]);
 
   useEffect(() => {
-    async function loadOrders(): Promise<void> {
-      const response = await api.get('/orders');
-
-      setOrders(
-        response.data.map((order: Food) => ({
-          ...order,
-          formattedPrice: formatValue(order.price),
-        })),
-      );
+    async function loadFavorites(): Promise<void> {
+      // Load favorite foods from api
     }
 
-    loadOrders();
+    loadFavorites();
   }, []);
 
   return (
     <Container>
       <Header>
-        <HeaderTitle>Meus pedidos</HeaderTitle>
+        <HeaderTitle>Meus favoritos</HeaderTitle>
       </Header>
 
       <FoodsContainer>
         <FoodList
-          data={orders}
+          data={favorites}
           keyExtractor={item => String(item.id)}
           renderItem={({ item }) => (
-            <Food key={item.id} activeOpacity={0.6}>
+            <Food activeOpacity={0.6}>
               <FoodImageContainer>
                 <Image
                   style={{ width: 88, height: 88 }}
@@ -76,4 +69,4 @@ const Orders: React.FC = () => {
   );
 };
 
-export default Orders;
+export default Favorites;

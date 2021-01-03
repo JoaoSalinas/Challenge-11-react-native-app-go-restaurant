@@ -54,9 +54,7 @@ const Dashboard: React.FC = () => {
   const navigation = useNavigation();
 
   async function handleNavigate(id: number): Promise<void> {
-    navigation.navigate('FoodDetails', {
-      id,
-    });
+    // Navigate do ProductDetails page
   }
 
   useEffect(() => {
@@ -89,11 +87,7 @@ const Dashboard: React.FC = () => {
   }, []);
 
   function handleSelectCategory(id: number): void {
-    if (selectedCategory === id) {
-      setSelectedCategory(undefined);
-    } else {
-      setSelectedCategory(id);
-    }
+    // Select / deselect category
   }
 
   return (

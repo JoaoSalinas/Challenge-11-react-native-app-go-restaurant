@@ -104,7 +104,7 @@ const FoodDetails: React.FC = () => {
 
     if (!findExtra) return;
 
-    if (findExtra.quantity === 0) return;
+    if (findExtra.quantity === 1) return;
 
     setExtras(
       extras.map(extra =>
@@ -118,7 +118,7 @@ const FoodDetails: React.FC = () => {
   }
 
   function handleDecrementFood(): void {
-    if (foodQuantity === 1) return;
+    if (foodQuantity === 0) return;
 
     setFoodQuantity(foodQuantity - 1);
   }
@@ -139,7 +139,7 @@ const FoodDetails: React.FC = () => {
     }, 0);
 
     const foodTotal = food.price;
-    return formatValue((extraTotal + foodTotal) * foodQuantity);
+    return formatValue((extraTotal + foodTotal) * value);
   }, [extras, food, foodQuantity]);
 
   async function handleFinishOrder(): Promise<void> {

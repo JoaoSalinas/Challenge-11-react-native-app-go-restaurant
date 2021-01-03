@@ -118,9 +118,11 @@ const FoodDetails: React.FC = () => {
   }
 
   function handleDecrementFood(): void {
-    if (foodQuantity === 1) return;
+    const findExtra = extras.find(extra => extra.id === id);
 
-    setFoodQuantity(foodQuantity - 1);
+    if (!findExtra) return;
+
+    if (findExtra.quantity === 0) return;
   }
 
   const toggleFavorite = useCallback(() => {
@@ -139,7 +141,7 @@ const FoodDetails: React.FC = () => {
     }, 0);
 
     const foodTotal = food.price;
-    return formatValue((extraTotal + foodTotal) * foodQuantity);
+    return formatValue(extraTotal + foodTotal);
   }, [extras, food, foodQuantity]);
 
   async function handleFinishOrder(): Promise<void> {
